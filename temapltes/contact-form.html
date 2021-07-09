@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django Blog</title>
+    <!-- FontAwesome version 5 -->
+    <link rel="stylesheet" href="../static/fontawesome/css/all.css">
+    <!-- Bootstrap CSS version 5 -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-3">
+                        <a href="#" class="nav-link btn btn-login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link btn btn-singup ms-3">Sign up &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 m-auto">
+                    <div class="card mt-5 sm-shadow">
+                        <div class="card-body">
+                            <h4 class="text-center py-2">Contact us</h4>
+                            <form class="row g-3" action="" method="POST">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control"
+                                        placeholder="Full name">
+                                </div>
+                                <div class="col-12">
+                                    <input type="email" class="form-control"
+                                        placeholder="Email address">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Country">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="City">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control"
+                                        placeholder="Address, road 5312, dhaka">
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <button type="submit" class="btn btn-primary d-block">send mail</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <span>@2021 copy right</span>
+    </footer>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</body>
+
+</html>
