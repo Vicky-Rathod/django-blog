@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+a {
+    text-decoration: none;
+}
+ul, li{
+    display: inline-block;
+    list-style: none;
+}
 /* Start default css handling */
 .tags .table{
     border: transparent !important;
@@ -37,6 +44,7 @@
 }
 .btn-more{
     color: #198754;
+    text-decoration: none;
     /* background-color: #198754;
     border-color: #198754;
     width: 7rem; */
@@ -126,3 +134,10 @@
 .post-author{
     color: #198754;
 }
+
+/* Start Profile images */
+.profile-image{
+    height: 10rem;
+    width: 10rem;
+}
+/* End Profile images */
