@@ -25,8 +25,8 @@ ul, li{
     width: 5rem;
 }
 .btn-login:hover{
-    color: #fff !important;
-    background-color: #198754;
+    color: #198754 !important;
+    background-color: #198754 transparent;
     border-color: #198754
 }
 
