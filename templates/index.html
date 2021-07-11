@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}Home{% endblock head_title %}
+
+{% block extra_head %}
+    
+{% endblock extra_head %}
+    
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 m-auto">
+            <div class="bd-callout bd-callout-info">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive
+                            technologies</h3>
+                    </div>
+                    <div class="dropdown post-more">
+                        <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fas fa-ellipsis-v post-more-icon"></i>
+                        </li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Using color to add meaning only provides a visual indication, which will not be conveyed to
+                    users of
+                    assistive technologies – such as screen readers. Ensure that information denoted by the
+                    color is either
+                    obvious from the content itself (e.g. the visible text), or is included through alternative
+                    means, such
+                    as additional text hidden with the <code>.visually-hidden</code> class.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="#" class="btn-more ms-2">Learn more &#8594;
+                        <!-- <i class="fas fa-angle-right more-icon"></i> -->
+                    </a>
+                    <div class="post-author">
+                        by mohammadanarul | Jun 1 2021
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

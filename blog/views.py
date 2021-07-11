@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse
+from django.views.generic import View, ListView, DetailView, CreateView
 
-# Create your views here.
+
+class HomeView(View):
+    template_name = 'index.html'
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name)
