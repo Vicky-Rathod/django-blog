@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- website title section -->
+{% block head_title %}Login{% endblock head_title %}
+    
+<!-- Main content section -->
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 mx-auto">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="username" class="form-control mb-2" placeholder="username or email">
+                    <input type="password" name="password" class="form-control mb-2" placeholder="password">
+                    <button class="btn btn-primary" type="submit">Login</button> <br>
+                    <span><a href="{% url 'account:password_reset_view' %}">forgot your password.. </a></span>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

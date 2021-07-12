@@ -7,13 +7,17 @@ from .forms import Postform
 class HomeView(View):
     template_name = 'index.html'
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+        object_list = Post.objects.all()
+        context = {
+            'object_list': object_list,
+        }
+        return render(self.request, self.template_name, context)
 
 class AddPostView(LoginRequiredMixin, CreateView):
     template_name = 'add-post.html'
     form_class = Postform
-    success_url = reverse_lazy('/')
+    success_url = reverse_lazy('blog:home_view')
 
-    def form_valid(self, *args, **kwargs):
+    def form_valid(self, form):
         form.instance.user = self.request.user
         return super(AddPostView, self).form_valid(form)

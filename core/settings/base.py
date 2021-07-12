@@ -5,6 +5,13 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))
 
+# Custom authenticated import base file.
+AUTH_USER_MODEL = "accounts.Account"
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'accounts.backends.EmailOrUsernameBackend',
+)
 
 # Application definition
 
@@ -17,6 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom app installed
     'blog.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
+
+    # third party app installed
+    'crispy_forms',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +105,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 
+# Crispy form template inherit
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# User login and logout redirection
+LOGIN_URL = 'account:login_view'
+LOGIN_REDIRECT_URL = 'blog:home_view'
+LOGOUT_REDIRECT_URL = 'account:login_view'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

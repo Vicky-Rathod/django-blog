@@ -12,6 +12,7 @@ django-mptt = "*"
 psycopg2 = "*"
 whitenoise = "*"
 django-crispy-forms = "*"
+six = "*"
 
 [dev-packages]
 
