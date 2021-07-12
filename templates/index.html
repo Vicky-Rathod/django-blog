@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_templatetags %}
 {% block head_title %}Home{% endblock head_title %}
 
 {% block extra_head %}
-    
+
 {% endblock extra_head %}
-    
+
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-xl-8 m-auto">
-            
-            {% for object in object_list %}
+        <div class="col-xl-8">
+            <div class="post mt-5">
+                {% for object in object_list %}
                 <div class="bd-callout bd-callout-info">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -20,18 +21,18 @@
                             </h3>
                         </div>
                         <div class="dropdown post-more">
-                            <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v post-more-icon"></i>
                             </li>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                
+
                                 {% if object.user != user %}
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 {% else %}
-                                    <li><a class="dropdown-item" href="{% url 'blog:single_post_delete_view' object.slug %}">Delete</a></li>
-                                    <li><a class="dropdown-item" href="#">Update</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>   
+                                <li><a class="dropdown-item"
+                                        href="{% url 'blog:single_post_delete_view' object.slug %}">Delete</a></li>
+                                <li><a class="dropdown-item" href="{% url 'blog:post_update_view' object.slug %}">Update</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -42,14 +43,154 @@
                             <!-- <i class="fas fa-angle-right more-icon"></i> -->
                         </a>
                         <div class="post-author">
-                            by {{ object.user }} | {{ object.created_at|date:"D d M" }} ago {{ object.created_at|time:"H:i" }}
+                            by {{ object.user }} | {{ object.created_at|date:"D d M" }} ago
+                            {{ object.created_at|time:"H:i" }}
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-                
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <!-- current User Profile -->
+            <div class="card mt-5">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <img src="{% static 'images/mdo.jpg' %}" alt="mdo" width="80" height="80"
+                        class="rounded-circle me-2">
+                    <h4>Admin</h4>
+                    <p class="text-center">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex eveniet hic, sed ea
+                        voluptatem recusandae ut quae magnam nisi minima tenetur adipisci odio dignissimos.
+                    </p>
+                </div>
+            </div>
+            <!-- Recent Post -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Recent Post</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% recent_post_lists as recent_post_list %}
+                            {% for recent_post in recent_post_list %}
+                            <tr>
+                                <td>
+                                    <a href="#">{{ recent_post.title }}</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Popular post -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Popular Post</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="#">Lorem ipsum dolor sit amet.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Lorem ipsum dolor sit amet.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Lorem ipsum dolor sit amet.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Lorem ipsum dolor sit amet.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Lorem ipsum dolor sit amet.</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Post Tags -->
+            <div class="card mt-3 tags">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Popular Post</th>
+                            </tr>
+                        </thead>
+                        <tbody class="d-flex flex-wrap">
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Django.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Python</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Java</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Javascript</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">C++</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">mohammadanarul</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Fashion</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">Man</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">codingwithdjango</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="badge bg-success">C++</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {% endblock content %}
-    

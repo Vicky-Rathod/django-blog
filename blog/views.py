@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View, ListView, DetailView, CreateView, DeleteView
+from django.views.generic import View, ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .models import Post
 from .forms import Postform
+
 class HomeView(View):
     template_name = 'index.html'
     def get(self, *args, **kwargs):
@@ -40,3 +41,20 @@ class AddPostView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(AddPostView, self).form_valid(form)
+ 
+class PostUpdateView(UpdateView):
+    # specify the model you want to use
+    model = Post
+    template_name = 'update-post.html'
+    form_class = Postform
+    success_url = '/'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.user != self.request.user:
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PostUpdateView, self).form_valid(form)
