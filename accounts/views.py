@@ -18,7 +18,7 @@ from .models import Account
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect('account:home_view')
+        return redirect('blog:home_view')
 
 class UserLoginView(View):
     template_name = 'account/login.html'

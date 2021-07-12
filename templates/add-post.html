@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block head_title %}{% endblock head_title %}
+{% block head_title %}Add Post{% endblock head_title %}
 
 {% block extra_head %}
     
@@ -13,8 +13,17 @@
             <div class="bd-callout bd-callout-info">
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <input class="form-control mb-3" type="text" name="title" placeholder="Title">
-                    <textarea class="form-control mb-3" name="description" cols="30" rows="10"></textarea>
+                    <div class="mb-3">
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.description }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.status }}
+                    </div>
+                    <!-- <input class="form-control mb-3" type="text" name="title" placeholder="Title">
+                    <textarea class="form-control mb-3" name="description" cols="30" rows="10"></textarea> -->
                     <button class="btn btn-success" type="submit">Post</button>
                 </form>
             </div>
