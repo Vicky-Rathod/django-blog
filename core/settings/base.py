@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # third party app installed
     'crispy_forms',
     'django.contrib.sitemaps',
+    'ckeditor',
     'ckeditor_uploader',
 ]
 

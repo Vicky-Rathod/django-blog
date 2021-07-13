@@ -13,6 +13,7 @@
             <div class="bd-callout bd-callout-info">
                 <form action="" method="POST">
                     {% csrf_token %}
+                    {{ form.media }}
                     <div class="mb-3">
                         {{ form.title }}
                     </div>

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 a {
-    text-decoration: none;
+    text-decoration: transparent;
 }
 ul, li{
     list-style: none;

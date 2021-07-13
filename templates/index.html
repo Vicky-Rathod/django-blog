@@ -37,14 +37,13 @@
                             </ul>
                         </div>
                     </div>
-                    <p>{{ object.description|slice:":200" }}</p>
+                    <p>{{ object.description|slice:":200"|safe }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ object.get_absolute_url }}" class="btn-more ms-2">Learn more &#8594;
                             <!-- <i class="fas fa-angle-right more-icon"></i> -->
                         </a>
                         <div class="post-author">
-                            by {{ object.user }} | {{ object.created_at|date:"D d M" }} ago
-                            {{ object.created_at|time:"H:i" }}
+                            by {{ object.user }} | {{ object.created_at|date:"D d M" }}
                         </div>
                     </div>
                 </div>
