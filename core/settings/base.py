@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
+    'skills.apps.SkillsConfig',
+    'social_links.apps.SocialLinksConfig',
 
     # third party app installed
     'crispy_forms',
