@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 
 User = settings.AUTH_USER_MODEL
 
@@ -17,7 +18,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, verbose_name=_("Author"), on_delete=models.CASCADE)
     title = models.CharField(_("Title"), max_length=250)
     slug = models.SlugField(_("slug"), unique=True, blank=True)
-    description = models.TextField(_("Description"))
+    description = RichTextUploadingField(_("Description"))
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     dislikes = models.ManyToManyField(User, related_name='dislikes', blank=True)
     status = models.CharField(_("Status"), choices=CHOICES_STATUS, default='Draft', max_length=12)

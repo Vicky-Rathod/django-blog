@@ -7,7 +7,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('account/', include('accounts.urls', namespace='account')),
+    path('p/', include('profiles.urls', namespace='profile')),
     path('auth', include('django.contrib.auth.urls')),
+
+    # third party url
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:
