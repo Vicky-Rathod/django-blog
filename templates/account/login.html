@@ -2,13 +2,13 @@
 {% load static %}
 <!-- website title section -->
 {% block head_title %}Login{% endblock head_title %}
-    
+
 <!-- Main content section -->
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-xl-5 mx-auto">
-                <form action="" method="post">
+        <div class="login">
+            <div class="bd-login bd-login-info">
+                <form action="" method="POST">
                     {% csrf_token %}
                     <input type="text" name="username" class="form-control mb-2" placeholder="username or email">
                     <input type="password" name="password" class="form-control mb-2" placeholder="password">
@@ -19,4 +19,3 @@
         </div>
     </div>
 {% endblock content %}
-    

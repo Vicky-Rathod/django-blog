@@ -143,4 +143,12 @@ ul, li{
     height: 10rem;
     width: 10rem;
 }
+.bg-dadge{
+    color: #fff;
+    background-color: #198754;
+    border: 1px solid #198754;
+    padding: .25rem .25rem;
+    border-radius: .25rem;
+    margin: 0rem .25rem .25rem 0rem;
+}
 /* End Profile images */
