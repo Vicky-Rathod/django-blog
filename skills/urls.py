@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import SkillCreateView
+from .views import SkillEditView
 
 app_name = 'skills'
 urlpatterns = [
-    path('add/', SkillCreateView.as_view(), name='add_update_skill_view')
+    path('update/<str:pk>/', SkillEditView.as_view(), name='update_skill_view')
 ]

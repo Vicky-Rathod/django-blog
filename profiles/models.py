@@ -14,6 +14,10 @@ class Profile(models.Model):
     short_description = models.CharField(_("Short Description"), max_length=300)
     bio =  models.TextField(_("Bio"))
     image = models.ImageField(_("Image"), upload_to=None)
-    date_of_birth = models.DateTimeField(_("Date of birth"), blank=True, null=True)
+    date_of_birth = models.DateField(_("Date of birth"), blank=True, null=True)
     gender = models.CharField(_("Gander"), choices=CHOICES_GENDER, max_length=20)
+
+    def __str__(self):
+        return self.user.username
+    
 

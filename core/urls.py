@@ -10,6 +10,7 @@ urlpatterns = [
     path('p/', include('profiles.urls', namespace='profile')),
     path('auth', include('django.contrib.auth.urls')),
     path('skill/', include('skills.urls', namespace='skill')),
+    path('sl/', include('social_links.urls', namespace='social_link')),
 
     # third party url
     path('ckeditor/', include('ckeditor_uploader.urls')),

@@ -14,6 +14,26 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'profile.html'
 
-class ProfileCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'add-profile.html'
-    form_class = ProfileForm
+class ProfileDescriptionUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile/update-bio-profile.html'
+    model = Profile
+    fields = ('bio',)
+    success_url = '/'
+
+class ProfileImageUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile/update-image.html'
+    model = Profile
+    fields = ('image',)
+    success_url = '/'
+
+class ProfileShortDescriptionUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile/update-short_description.html'
+    model = Profile
+    fields = ('short_description',)
+    success_url = '/'
+
+class ProfileSettingsUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile/update-profile-setting.html'
+    model = Profile
+    fields = ('full_name', 'date_of_birth', 'gender')
+    success_url = '/'
