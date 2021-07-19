@@ -6,7 +6,9 @@ from .views import (
     AddPostView,
     SinglePostView,
     SingePostDeleteView,
-    PostUpdateView
+    PostUpdateView,
+    PostLikeView,
+    PostDisLikeView,
 )
 
 sitemaps = {
@@ -20,6 +22,8 @@ urlpatterns = [
     path('delete/<slug>/', SingePostDeleteView.as_view(), name='single_post_delete_view'),
     path('add-post/', AddPostView.as_view(), name='add_post_view'),
     path('update/<slug>/', PostUpdateView.as_view(), name='post_update_view'),
+    path('like/<str:pk>/', PostLikeView.as_view(), name='post_like'),
+    path('dislike/<str:pk>/', PostDisLikeView.as_view(), name='post_dislike'),
     
     # sitemap path
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),

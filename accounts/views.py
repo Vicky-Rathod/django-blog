@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.views.generic import View
@@ -22,7 +22,10 @@ class LogoutView(View):
 
 class UserLoginView(View):
     template_name = 'account/login.html'
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            next = request.POST.get('next', '/')
+            return HttpResponseRedirect(next)
         return render(self.request, self.template_name)
 
     def post(self, request, *args, **kwargs):
@@ -41,8 +44,11 @@ class UserLoginView(View):
                 
 class UserRegisterView(View):
     template_name = 'account/register.html'
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            next = request.POST.get('next', '/')
+            return HttpResponseRedirect(next)
+        return render(request, self.template_name)
     def post(self, request, *args, **kwargs):
         form = AccountRegisterForm()
         if request.method == 'POST':
@@ -83,8 +89,11 @@ class UserAccountActivateView(View):
 class PasswordResetRequestView(View):
     password_reset_form = PasswordResetForm
     template_name = "password_reset/password_reset.html"
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name, {"password_reset_form": self.password_reset_form})
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            next = request.POST.get('next', '/')
+            return HttpResponseRedirect(next)
+        return render(request, self.template_name, {"password_reset_form": self.password_reset_form})
 
     def post(self, request, *args, **kwargs):
         if request.method == "POST":

@@ -11,6 +11,9 @@ urlpatterns = [
     path('auth', include('django.contrib.auth.urls')),
     path('skill/', include('skills.urls', namespace='skill')),
     path('sl/', include('social_links.urls', namespace='social_link')),
+    path('l/', include('likes.urls', namespace='like')),
+    path('c/', include('comments.urls', namespace='comment')),
+    path('f/', include('favorite_post.urls', namespace='favorite')),
 
     # third party url
     path('ckeditor/', include('ckeditor_uploader.urls')),

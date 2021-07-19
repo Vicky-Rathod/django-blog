@@ -164,6 +164,19 @@ ul, li{
     background-color: #198754;
     border-radius: 1rem;
 }
+.comment-like-dislike span{
+    font-size: 1rem;
+    padding: 0rem .25rem;
+}
+.comment-like-dislike .fa-comment-alt{
+    color: #198754;
+}
+.comment-like-dislike .fa-heart{
+    color: #198754;
+}
+.comment-like-dislike .fa-thumbs-down{
+    color: red;
+}
 /* .p-image-area .edit-btn:hover{
     position: absolute;
     height: auto;

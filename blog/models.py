@@ -21,6 +21,9 @@ class Post(models.Model):
     description = RichTextUploadingField(_("Description"))
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     dislikes = models.ManyToManyField(User, related_name='dislikes', blank=True)
+    favorites = models.ManyToManyField(
+                                    User, related_name='favorites',
+                                    default=None, blank=True)
     status = models.CharField(_("Status"), choices=CHOICES_STATUS, default='Draft', max_length=12)
     created_at = models.DateTimeField(_("Create time"), auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(_("Update time"), auto_now=True, auto_now_add=False)
@@ -30,6 +33,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def total_likes(self):
+        return self.likes.all().count()
+    
+    def total_dislikes(self):
+        return self.dislikes.all().count()
+    
+    def total_comment(self):
+        return self.comments.all().count()
     
     class Meta:
         ordering = ('-created_at',)
