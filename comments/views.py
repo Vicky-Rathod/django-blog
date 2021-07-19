@@ -11,8 +11,8 @@ class CommentCreateView(CreateView):
     # def get(self, request):
     #     next = request.POST.get('next', '/')
     #     return HttpResponseRedirect(next)
-    def get_success_url(self):
-        return reverse_lazy('blog:single_post_view', kwargs={'slug':self.object.post.slug})
+    # def get_success_url(self):
+    #     return reverse_lazy('blog:single_post_view', kwargs={'slug':self.object.post.slug})
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs.get("slug"))
