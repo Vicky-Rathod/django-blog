@@ -4,7 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 from blog.models import Post
-class Comment(models.Model):
+
+class Comment(MPTTModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, 
                             verbose_name=_("user"), 
                             on_delete=models.CASCADE)

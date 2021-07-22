@@ -25,7 +25,7 @@
         <div class="card-body d-flex flex-column">
           <h4 class="text-center">About</h4>
           <p>
-            {{ object.bio }}
+            {{ object.description }}
             <a href="{% url 'profile:update_profile_description_view' pk=object.id %}"><i
                 class="far fa-edit description-icon"></i></a>
           </p>
@@ -96,35 +96,47 @@
       </div>
       <div class="card mt-3">
         <div class="card-body">
-          <div class="bd-callout bd-callout-info">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h3 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive
-                  technologies</h3>
+          
+          {% for user_post in post %}
+            <div class="bd-callout bd-callout-info">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h3 id="conveying-meaning-to-assistive-technologies">
+                    {{ user_post.title }}
+                  </h3>
+                </div>
+                <div class="dropdown post-more">
+                  <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v post-more-icon"></i>
+                  </li>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                      {% if object.user != user %}
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      {% else %}
+                      <li><a class="dropdown-item"
+                              href="{% url 'blog:single_post_delete_view' user_post.slug %}">Delete</a></li>
+                      <li><a class="dropdown-item"
+                              href="{% url 'blog:post_update_view' user_post.slug %}">Update</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      {% endif %}
+                  </ul>
               </div>
-              <div class="dropdown post-more">
-                <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v post-more-icon"></i>
-                </li>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+              </div>
+              <p>
+                {{ user_post.description|slice:"100"|safe }}
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="{{ user_post.get_absolute_url }}" class="btn-more ms-2">Learn more &#8594;
+                  <!-- <i class="fas fa-angle-right more-icon"></i> -->
+                </a>
+                <div class="post-author">
+                  by {{ user_post.user }} | {{ user_post.created_at|date }}
+                </div>
               </div>
             </div>
-            <p>Using color to add meaning only provides a visual indication, which will not be conveyed to
-              users of <code>.visually-hidden</code> class.
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <a href="#" class="btn-more ms-2">Learn more &#8594;
-                <!-- <i class="fas fa-angle-right more-icon"></i> -->
-              </a>
-              <div class="post-author">
-                by mohammadanarul | Jun 1 2021
-              </div>
-            </div>
-          </div>
+          {% endfor %}
+            
         </div>
       </div>
     </div>

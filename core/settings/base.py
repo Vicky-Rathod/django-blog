@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'ckeditor',
     'ckeditor_uploader',
+    'mptt',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

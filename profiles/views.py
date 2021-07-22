@@ -8,11 +8,15 @@ from django.views.generic import (
     UpdateView,
     View
 )
+from blog.models import Post
 from .models import Profile
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Profile
-    template_name = 'profile.html'
+class ProfileView(LoginRequiredMixin, View):
+    template_name = 'profile/profile.html'
+    def get(self, request, pk, *args, **kwargs):
+        profile = Profile.objects.get(pk=pk)
+        post = Post.objects.filter(user=request.user)
+        return render(request, self.template_name, {'object': profile, 'post': post})
 
 class ProfileDescriptionUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'profile/update-bio-profile.html'
