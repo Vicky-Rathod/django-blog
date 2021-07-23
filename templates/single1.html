@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block head_title %}{{ object.title }}{% endblock head_title %}
+
+{% block extra_head %}
+
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card card-body mt-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 id="conveying-meaning-to-assistive-technologies">
+                        {{ object.title }}
+                    </h3>
+                    <a href="#">
+                        <i class="far fa-bookmark"></i>
+                    </a>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="ms-2 me-2" id="conveying-meaning-to-assistive-technologies">{{ object.user }}</span> |
+                    <span class="ms-2">{{ object.created_at| date }}</span>
+                </div>
+                <hr>
+                <p>
+                    {{ object.description|safe }}
+                </p>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bd-comment bd-comment-info">
+                            <div class="d-flex align-items-center">
+                                <span class="ms-2" id="conveying-meaning-to-assistive-technologies">Admin</span>
+                            </div>
+                            <p class="mt-1">Using color to add meaning only provides a visual indication, which
+                                will not be
+                                conveyed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <form id="myForm" class="mt-3" action="{% url 'comment:add_comment_view' object.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <textarea class="form-control" name="content" rows="3" placeholder="Comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Comment</button>
+                </form>
+                <div class="row">
+                    <div class="col-xl-12">
+                        {% recursetree object.comments.all %}
+                        <div id="{{ node.id }}" class="my-2 p-2" style="border: 1px solid grey">
+                            <div class="d-flex justify-content-between">By {{ node.user }}<div></div>{{ node.publish|date }}
+                            </div>
+                            <div>{{ node.content }}</div>
+                            <hr />
+                            {% if node.level < 10 %}
+                            <button class="btn btn-success" onclick="myFunction({{ node.id }})">Reply</button>
+                            {% endif %}
+                        </div>
+                        {% if not node.is_leaf_node %}
+                        <div class="children ms-4 pl-md-5">
+                            {{ children }}
+                        </div>
+                        {% endif %}
+                        {% endrecursetree %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function formExit() {
+      document.getElementById("newForm").remove();
+    }
+  
+    function myFunction(id) {
+      if (document.contains(document.getElementById("newForm"))) {
+        document.getElementById("newForm").remove();
+      }
+  
+      var d1 = document.getElementById(id);
+      d1.insertAdjacentHTML('afterend',
+        '<form id="newForm" action="{% url "comment:add_comment_view" object.pk %}" class="form-insert py-2" method="post"> \
+                  <div class="d-flex justify-content-between"><h2>Reply:</h2><div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div></div> \
+                  <select name="parent" class="d-none" id="id_parentt"> \
+                  <option value="' + id + '" selected="' + id + '"></option> \
+                  </select> \
+                  <label for="id_content">Content:</label> \
+                  <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+                  {% csrf_token %} \
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> \
+                </form>');
+  
+    //   document.querySelector('#id_parentt [value="' + id + '"]').selected = true;
+    }
+  
+    $('#myForm').trigger("reset");
+  </script>
+{% endblock content %}

@@ -64,7 +64,7 @@
                     <div class="col-xl-12">
 
                         {% recursetree object.comments.all %}
-                        <div class="bd-comment bd-comment-info">
+                        <div id="{{ node.id }}" class="bd-comment bd-comment-info">
                             <div class="d-flex align-items-center">
                                 <img src="{{ node.user.profile.image.url }}" alt="mdo" width="32" height="32"
                                     class="rounded-circle me-2"> |
@@ -237,7 +237,7 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     function formExit() {
         document.getElementById("newForm").remove();
     }
@@ -257,12 +257,11 @@
                   <label for="id_content">Content:</label> \
                   <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
                   {% csrf_token %} \
-                  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> \
+                  <button type="submit" class="btn mt-2 btn-primary btn-lg btn-block">comment</button> \
                 </form>');
 
         //   document.querySelector('#id_parentt [value="' + id + '"]').selected = true;
     }
-
     $('#myForm').trigger("reset");
 </script>
 {% endblock content %}
