@@ -25,7 +25,11 @@ DATABASES = {
 # }
 
 # Configure Django App for Heroku.
+import django_heroku
 django_heroku.settings(locals())
+
+# whitenoise collectstatic
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
