@@ -4,19 +4,25 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['web-domain-name', '*']
+ALLOWED_HOSTS = ['https://codingwithmohammadanarul.herokuapp.com/', '*']
 
 # database management
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
-        'PORT': config('PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': config('NAME'),
+#         'USER': config('USER'),
+#         'PASSWORD': config('PASSWORD'),
+#         'HOST': config('HOST'),
+#         'PORT': config('PORT'),
+#     }
+# }
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
