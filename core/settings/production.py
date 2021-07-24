@@ -1,8 +1,8 @@
 from .base import *
 
-SECRET_KEY = config('SECRET_KEY', 'django-insecure-(-!l&-hapr)*9+fix_dp64iwk$*usg(esy+5ziz5j##rlfoo$(')
+SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['https://mohammadanarul.herokuapp.com/', '*']
 
