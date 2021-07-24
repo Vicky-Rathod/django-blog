@@ -1,4 +1,5 @@
 from .base import *
+import dj_database_url
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -7,12 +8,7 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['https://mohammadanarul.herokuapp.com/', '*']
 
 # database management
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
