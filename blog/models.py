@@ -2,7 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
-from ckeditor_uploader.fields import RichTextUploadingField
+# thirt perty app import
+from taggit.managers import TaggableManager
 
 User = settings.AUTH_USER_MODEL
 
@@ -17,8 +18,9 @@ class Post(models.Model):
     )
     user = models.ForeignKey(User, verbose_name=_("Author"), on_delete=models.CASCADE)
     title = models.CharField(_("Title"), max_length=250)
-    slug = models.SlugField(_("slug"), unique=True, blank=True)
-    description = RichTextUploadingField(_("Description"))
+    slug = models.SlugField(_("slug"), unique=True, blank=True, max_length=250)
+    description = models.TextField(_("description"))
+    hashtags = TaggableManager()
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     dislikes = models.ManyToManyField(User, related_name='dislikes', blank=True)
     favorites = models.ManyToManyField(

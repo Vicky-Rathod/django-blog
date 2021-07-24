@@ -16,7 +16,6 @@ urlpatterns = [
     path('f/', include('favorite_post.urls', namespace='favorite')),
 
     # third party url
-    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

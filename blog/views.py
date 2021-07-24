@@ -4,7 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View, ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .models import Post
-from .forms import Postform
+from .forms import PostForm
+
+# thirt perty import 
+from taggit.models import Tag
 
 class HomeView(View):
     template_name = 'index.html'
@@ -34,27 +37,21 @@ class SingePostDeleteView(LoginRequiredMixin, DeleteView):
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
 
-class AddPostView(LoginRequiredMixin, CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
+    model = Post
     template_name = 'add-post.html'
-    form_class = Postform
+    form_class = PostForm
     success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(AddPostView, self).form_valid(form)
+        return super(CreatePostView, self).form_valid(form)
  
 class PostUpdateView(LoginRequiredMixin, UpdateView):
-    # specify the model you want to use
     model = Post
-    template_name = 'update-post.html'
-    form_class = Postform
+    template_name = 'add-post.html'
+    form_class = PostForm
     success_url = '/'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.user != self.request.user:
-            return redirect(self.success_url)
-        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -123,3 +120,10 @@ class PostDisLikeView(LoginRequiredMixin, View):
         # next = request.POST.get('next', '/')
         next = request.META['HTTP_REFERER']
         return HttpResponseRedirect(next)
+
+class SingleHashTagPostList(LoginRequiredMixin, View):
+    template_name = "hashtags_post_list.html"
+    def get(self, request, slug, *args, **kwargs):
+        hashtag = Tag.objects.get(slug=slug)
+        post_list = Post.objects.filter(hashtags=hashtag)
+        return render(request, self.template_name, {'object_list': post_list, 'hashtag': hashtag,})

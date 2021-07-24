@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p id="post-body">{{ object.description|slice:'200' }}</p>
+                    <p>{{ object.description|slice:":200" }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ object.get_absolute_url }}" class="btn-more ms-2">Learn more &#8594;
                             <!-- <i class="fas fa-angle-right more-icon"></i> -->
@@ -53,8 +53,7 @@
                     <hr>
                     <div class="hastags">
                         {% for has_tag in object.hashtags.all %}
-                        <a href="{% url 'blog:hashtag_list_posts' has_tag.slug %}"
-                            class="me-2 tag-badge">#{{ has_tag.name }}</a>
+                        <a href="{% url 'blog:hashtag_list_posts' has_tag.slug %}" class="me-2 tag-badge">#{{ has_tag.name }}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -77,8 +76,7 @@
                                 {% for recent_post in recent_post_list %}
                                 <tr>
                                     <td>
-                                        <a
-                                            href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.title }}</a>
+                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.title }}</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -137,16 +135,15 @@
                             </thead>
                             {% common_hashtags as hashtags %}
                             <tbody class="d-flex flex-wrap">
-
+                                
                                 {% for hashtag in hashtags %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'blog:hashtag_list_posts' hashtag.slug %}"
-                                            class="tag-badge">{{ hashtag.name }}</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'blog:hashtag_list_posts' hashtag.slug %}" class="tag-badge">{{ hashtag.name }}</a>
+                                        </td>
+                                    </tr>
                                 {% endfor %}
-
+                                    
                             </tbody>
                         </table>
                     </div>

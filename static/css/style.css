@@ -99,7 +99,7 @@ ul, li{
     border-radius: .25rem;
 }
 .post-more{
-    margin-top: -1rem;
+    margin-top: -.50rem;
 }
 .post-more-icon{
     color: #198754;
@@ -209,3 +209,13 @@ ul, li{
     padding-top: 1rem;
 }
 /* End Profile images */
+
+.tag-badge{
+    color: #FFFFFF;
+    background-color: #198754;
+    padding: .30rem;
+    border-radius: .50rem;
+}
+.tag-badge:hover{
+    color: #FFFFFF;
+}

@@ -33,13 +33,11 @@ INSTALLED_APPS = [
 
     # third party app installed
     'crispy_forms',
+    'taggit',
     'django.contrib.sitemaps',
-    'ckeditor',
-    'ckeditor_uploader',
     'mptt',
 ]
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

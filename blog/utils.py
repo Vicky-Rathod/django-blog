@@ -29,3 +29,30 @@ def unique_slug_generator(instance, new_slug=None):
                 )
         return unique_slug_generator(instance, new_slug=new_slug)
     return slug
+
+def hashtag_generate(s):
+    indice_t = []
+    tags = []
+    tmp_str = ''
+    s = s.strip()
+    for i in range(len(s)):
+        if s[i] == "#":
+            indice_t.append(i)
+    for i in range(len(indice_t)):
+        index = indice_t[i]
+        if i == len(indice_t)-1:
+            boundary = len(s)
+        else:
+            boundary = indice_t[i+1]
+        index += 1
+        while index < boundary:
+            if s[index] in "`~!@#$%^&*()-_=+[]{}|\\:;'"",.<>?/ \n\t":
+                tags.append(tmp_str)
+                tmp_str = ''
+                break
+            else:
+                tmp_str += s[index]
+                index += 1
+        if tmp_str != '':
+            tags.append(tmp_str)
+    return tags

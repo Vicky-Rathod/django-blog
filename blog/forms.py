@@ -1,17 +1,20 @@
 from django import forms
+from taggit.forms import TagWidget
 from .models import Post
 
-class Postform(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'description', 'status')
+        fields = ('title', 'description', 'hashtags', 'status')
         labels = {
             'title': '',
-            'description': '',
+            # 'description': '',
+            'hashtags': '',
             'status': ''
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'title'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'description'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'post descriptions'}),
+            'hashtags': TagWidget(),
             'status': forms.Select(attrs={'class':'form-control'}),
         }

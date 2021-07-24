@@ -15,27 +15,36 @@
         <div class="col-xl-8">
             <div class="card card-body mt-5">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3 id="conveying-meaning-to-assistive-technologies">
-                        {{ object.title }}
-                    </h3>
-                    <a href="{% url 'favorite:add_favorite_post_view' object.slug %}">
-                        <i class="far fa-bookmark"></i>
-                    </a>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img src="{{ object.user.profile.image.url }}" alt="mdo" width="32" height="32"
-                        class="rounded-circle me-2"> |
-                    <span class="ms-2 me-2" id="conveying-meaning-to-assistive-technologies">{{ object.user }}</span> |
-                    <span class="ms-2">{{ object.created_at| date }}</span>
+                    <div>
+                        <img src="{{ object.user.profile.image.url }}" alt="mdo" width="32" height="32"
+                            class="rounded-circle me-2"> |
+                        <span class="ms-2 me-2"
+                            id="conveying-meaning-to-assistive-technologies">{{ object.user }}</span> |
+                        <span class="ms-2">{{ object.created_at| date }}</span>
+                    </div>
+                    <div>
+                        <a href="{% url 'favorite:add_favorite_post_view' object.slug %}">
+                            <i class="far fa-bookmark"></i>
+                        </a>
+                    </div>
                 </div>
                 <hr>
-                <p>
-                    {{ object.description|safe }}
+                <p id="post-body">
+                    {{ object.description }}
                 </p>
-                <div class="comment-like-dislike">
-                    <span><i class="far fa-comment-alt"></i> {{ object.total_comment }}</span>
-                    <span><i class="far fa-heart"></i> {{ object.total_likes }}</span>
-                    <span><i class="far fa-thumbs-down"></i> {{ object.total_dislikes }}</span>
+                <div class="d-flex justify-content-between">
+                    <div class="comment-like-dislike">
+                        <span><i class="far fa-comment-alt"></i> {{ object.total_comment }}</span>
+                        <span><i class="far fa-heart"></i> {{ object.total_likes }}</span>
+                        <span><i class="far fa-thumbs-down"></i> {{ object.total_dislikes }}</span>
+                    </div>
+                    <div class="comment-like-dislike">
+                        
+                        {% for h_tag in object.hashtags.all %}
+                            <a href="{% url 'blog:hashtag_list_posts' h_tag.slug %}" class="me-2 tag-badge">#{{ h_tag.name }}</a>
+                        {% endfor %}
+                            
+                    </div>
                 </div>
                 <hr>
                 <div class="d-flex flex-row align-items-center">
@@ -121,7 +130,7 @@
                                 {% for recent_post in recent_post_list %}
                                 <tr>
                                     <td>
-                                        <a href="#">{{ recent_post.title }}</a>
+                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.title }}</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -178,57 +187,17 @@
                                     <th>Popular Post</th>
                                 </tr>
                             </thead>
+                            {% common_hashtags as hashtags %}
                             <tbody class="d-flex flex-wrap">
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Django.</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Python</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Java</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Javascript</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">C++</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">mohammadanarul</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Fashion</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">Man</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">codingwithdjango</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#" class="badge bg-success">C++</a>
-                                    </td>
-                                </tr>
+                                
+                                {% for hashtag in hashtags %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'blog:hashtag_list_posts' hashtag.slug %}" class="tag-badge">{{ hashtag.name }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -264,4 +233,5 @@
     }
     $('#myForm').trigger("reset");
 </script>
+
 {% endblock content %}
