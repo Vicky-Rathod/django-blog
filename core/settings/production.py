@@ -1,6 +1,6 @@
 from .base import *
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', 'django-insecure-(-!l&-hapr)*9+fix_dp64iwk$*usg(esy+5ziz5j##rlfoo$(')
 
 DEBUG = config('DEBUG', cast=bool)
 
