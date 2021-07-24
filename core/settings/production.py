@@ -4,7 +4,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['https://codingwithmohammadanarul.herokuapp.com/', '*']
+ALLOWED_HOSTS = ['https://mohammadanarul.herokuapp.com/', '*']
 
 # database management
 DATABASES = {

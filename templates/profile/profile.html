@@ -11,16 +11,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-4">
-      <!-- <div class="card mt-5">
-        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-          <img src="{% static 'images/mdo.jpg' %}" alt="mdo" width="120" height="120" class="rounded-circle">
-          <span>@{{ object.user.username }}</span>
-          <p class="mb-0">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-          <hr>
-        </div>
-      </div> -->
       <div class="card mt-5">
         <div class="card-body d-flex flex-column">
           <h4 class="text-center">About</h4>
@@ -65,14 +55,15 @@
         <div class="card-body d-flex flex-column align-items-center">
           <div class="p-image-area">
             <img src="{{ object.image.url }}" alt="mdo" class="rounded-circle profile-image">
-            <a href="{% url 'profile:update_profile_image' pk=object.id %}" class="edit-btn"><i class="fas fa-camera"></i></i></a>
+            <a href="{% url 'profile:update_profile_image' pk=object.id %}" class="edit-btn"><i
+                class="fas fa-camera"></i></i></a>
           </div>
           <h5 class="mb-0">
-            
+
             {% if object.full_name %}
-              {{ object.full_name }}
+            {{ object.full_name }}
             {% else %}
-              @{{ object.user }}
+            @{{ object.user }}
             {% endif %}
           </h5>
           <p class="mb-0">
@@ -96,47 +87,48 @@
       </div>
       <div class="card mt-3">
         <div class="card-body">
-          
-          {% for user_post in post %}
-            <div class="bd-callout bd-callout-info">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h3 id="conveying-meaning-to-assistive-technologies">
-                    {{ user_post.title }}
-                  </h3>
-                </div>
-                <div class="dropdown post-more">
-                  <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v post-more-icon"></i>
-                  </li>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                      {% if object.user != user %}
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      {% else %}
-                      <li><a class="dropdown-item"
-                              href="{% url 'blog:single_post_delete_view' user_post.slug %}">Delete</a></li>
-                      <li><a class="dropdown-item"
-                              href="{% url 'blog:post_update_view' user_post.slug %}">Update</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      {% endif %}
-                  </ul>
+          {% for user_post in post %}
+          <div class="bd-callout bd-callout-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <img src="{{ object.user.profile.image.url }}" alt="mdo" width="32" height="32"
+                  class="rounded-circle me-2"> |
+                <span class="ms-2 me-2" id="conveying-meaning-to-assistive-technologies">{{ object.user }}</span> |
+                <span class="ms-2">{{ user_post.created_at| date }}</span>
               </div>
-              </div>
-              <p>
-                {{ user_post.description|slice:"100"|safe }}
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <a href="{{ user_post.get_absolute_url }}" class="btn-more ms-2">Learn more &#8594;
-                  <!-- <i class="fas fa-angle-right more-icon"></i> -->
-                </a>
-                <div class="post-author">
-                  by {{ user_post.user }} | {{ user_post.created_at|date }}
-                </div>
+              <div class="dropdown post-more">
+                <li type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v post-more-icon"></i>
+                </li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                  {% if user_post.user != user %}
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  {% else %}
+                  <li><a class="dropdown-item" href="{% url 'blog:single_post_delete_view' user_post.slug %}">Delete</a>
+                  </li>
+                  <li><a class="dropdown-item" href="{% url 'blog:post_update_view' user_post.slug %}">Update</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  {% endif %}
+                </ul>
               </div>
             </div>
+            <hr>
+            <p>
+              {{ user_post.description|slice:"100"|safe }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="{{ user_post.get_absolute_url }}" class="btn-more ms-2">Learn more &#8594;
+                <!-- <i class="fas fa-angle-right more-icon"></i> -->
+              </a>
+              <div class="post-author">
+                by {{ user_post.user }} | {{ user_post.created_at|date }}
+              </div>
+            </div>
+          </div>
           {% endfor %}
-            
+
         </div>
       </div>
     </div>
