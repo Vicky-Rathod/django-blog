@@ -15,6 +15,7 @@
         <div class="card-body d-flex flex-column">
           <h4 class="text-center">About</h4>
           <p>
+            {{request.user.email }} <br>
             {{ object.description }}
             <a href="{% url 'profile:update_profile_description_view' pk=object.id %}"><i
                 class="far fa-edit description-icon"></i></a>

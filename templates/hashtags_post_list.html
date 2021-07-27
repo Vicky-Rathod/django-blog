@@ -76,7 +76,7 @@
                                 {% for recent_post in recent_post_list %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.title }}</a>
+                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.description|slice:'50' }}</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

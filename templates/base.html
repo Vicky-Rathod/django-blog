@@ -34,7 +34,7 @@
                         <a href="{% url 'blog:sitemap' %}" class="nav-link">Sitemap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="{% url 'contact:contact_view' %}">Contact</a>
                     </li>
                 </ul>
 
@@ -70,12 +70,37 @@
         {% endblock content %}
             
     </div>
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
     <footer class="footer">
         <span>@2021 copy right</span>
     </footer>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "156973871908924");
+        chatbox.setAttribute("attribution", "biz_inbox");
+      
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v11.0'
+          });
+        };
+      
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
 </body>
 
 </html>

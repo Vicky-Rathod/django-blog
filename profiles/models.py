@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
 import datetime
 
 def ProfileAvatarUploadPathGenerate(instance, filename):
@@ -14,7 +15,7 @@ class Profile(models.Model):
     )
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     full_name = models.CharField(_("Full name"), max_length=250)
-    short_description = models.CharField(_("Short Description"), max_length=300)
+    short_description = models.CharField(_("Short Description"), default='Wiring for your shirt description', max_length=100)
     description =  models.TextField(_("description"), default='Your your details....')
     image = models.ImageField(_("Image"), upload_to=ProfileAvatarUploadPathGenerate, default='profile/avatar.png')
     date_of_birth = models.DateField(_("Date of birth"), blank=True, null=True)
@@ -22,5 +23,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse("profile:profile_view", kwargs={"pk": self.pk})
+    
     
 

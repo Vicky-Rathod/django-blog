@@ -17,7 +17,7 @@ class Post(models.Model):
         ('Draft', 'Draft')
     )
     user = models.ForeignKey(User, verbose_name=_("Author"), on_delete=models.CASCADE)
-    slug = models.SlugField(_("slug"), unique=True, blank=True, max_length=150)
+    slug = models.SlugField(_("slug"), unique=True, blank=True, max_length=80)
     description = models.TextField(_("description"))
     hashtags = TaggableManager()
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
@@ -26,6 +26,7 @@ class Post(models.Model):
                                     User, related_name='favorites',
                                     default=None, blank=True)
     status = models.CharField(_("Status"), choices=CHOICES_STATUS, default='Draft', max_length=12)
+    views = models.PositiveIntegerField(_("views"), default=0)
     created_at = models.DateTimeField(_("Create time"), auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(_("Update time"), auto_now=True, auto_now_add=False)
 
@@ -33,7 +34,7 @@ class Post(models.Model):
     post_manager = PostManager()
 
     def __str__(self):
-        return self.title
+        return f"{self.description[:80]}"
     
     def total_likes(self):
         return self.likes.all().count()
@@ -45,8 +46,9 @@ class Post(models.Model):
         return self.comments.all().count()
     
     class Meta:
-        ordering = ('-created_at',)
+        ordering = ('-created_at',) 
     
     def get_absolute_url(self):
         return reverse('blog:single_post_view', kwargs={'slug': self.slug})
+    
     

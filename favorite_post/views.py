@@ -16,4 +16,5 @@ class FavoriteAddView(LoginRequiredMixin, View):
             post.favorites.remove(request.user)
         else:
             post.favorites.add(request.user)
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        next = request.META['HTTP_REFERER']
+        return HttpResponseRedirect(next)

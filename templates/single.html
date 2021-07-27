@@ -3,7 +3,7 @@
 {% load mptt_tags %}
 {% load crispy_forms_tags %}
 {% load blog_templatetags %}
-{% block head_title %}{{ object.title }}{% endblock head_title %}
+{% block head_title %}{{ object.description|slice:'20' }}{% endblock head_title %}
 
 {% block extra_head %}
 
@@ -37,6 +37,7 @@
                         <span><i class="far fa-comment-alt"></i> {{ object.total_comment }}</span>
                         <span><i class="far fa-heart"></i> {{ object.total_likes }}</span>
                         <span><i class="far fa-thumbs-down"></i> {{ object.total_dislikes }}</span>
+                        <span><i class="far fa-eye"></i> {{ object.views }}</span>
                     </div>
                     <div class="comment-like-dislike">
                         
@@ -49,12 +50,12 @@
                 <hr>
                 <div class="d-flex flex-row align-items-center">
                     <div class="btn-group">
-                        <form action="{% url 'blog:post_like' object.pk %}" method="post">
+                        <form action="{% url 'blog:post_like' object.slug %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}">
                             <button type="submit" class="justify-content-start me-3 btn btn-primary">Like</button>
                         </form>
-                        <form action="{% url 'blog:post_dislike' object.pk %}" method="post">
+                        <form action="{% url 'blog:post_dislike' object.slug %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}">
                             <button type="submit" class="justify-content-start me-3 btn btn-primary">disLike</button>
@@ -130,7 +131,7 @@
                                 {% for recent_post in recent_post_list %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.title }}</a>
+                                        <a href="{% url 'blog:single_post_view' recent_post.slug %}">{{ recent_post.description|slice:'50' }}</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -219,14 +220,14 @@
         var d1 = document.getElementById(id);
         d1.insertAdjacentHTML('afterend',
             '<form id="newForm" action="{% url "comment:add_comment_view" object.slug %}" class="form-insert py-2" method="post"> \
-                  <div class="d-flex justify-content-between"><h2>Reply:</h2><div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div></div> \
                   <select name="parent" class="d-none" id="id_parentt"> \
                   <option value="' + id + '" selected="' + id + '"></option> \
                   </select> \
-                  <label for="id_content">Content:</label> \
                   <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
                   {% csrf_token %} \
-                  <button type="submit" class="btn mt-2 btn-primary btn-lg btn-block">comment</button> \
+                  <div class="d-flex justify-content-wrap"><button type="submit" class="btn mt-2 me-3 btn-primary btn-lg btn-block">comment</button> \
+                    <button type="button" class="btn btn-outline-danger mt-2" onclick="formExit()""><i class="far fa-window-close"></i></button>\
+                </div>\
                 </form>');
 
         //   document.querySelector('#id_parentt [value="' + id + '"]').selected = true;

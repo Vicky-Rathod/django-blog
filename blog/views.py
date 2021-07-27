@@ -22,6 +22,12 @@ class SinglePostView(DetailView):
     model = Post
     template_name = 'single.html'
 
+    def get_object(self):
+        obj = super(SinglePostView, self).get_object()
+        obj.views += 1
+        obj.save()
+        return obj
+
 class SingePostDeleteView(LoginRequiredMixin, DeleteView):
     # specify the model you want to use
     model = Post
@@ -58,9 +64,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         return super(PostUpdateView, self).form_valid(form)
 
 class PostLikeView(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
+    def post(self, request, slug, *args, **kwargs):
         user = request.user
-        post = Post.objects.get(pk=pk)
+        post = Post.objects.get(slug=slug)
 
         # Post DisLike Button
         is_dislike = False
@@ -89,9 +95,9 @@ class PostLikeView(LoginRequiredMixin, View):
         next = request.META['HTTP_REFERER']
         return HttpResponseRedirect(next)
 class PostDisLikeView(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
+    def post(self, request, slug, *args, **kwargs):
         user = request.user
-        post = Post.objects.get(pk=pk)
+        post = Post.objects.get(slug=slug)
 
         # Post DisLike Button
         is_like = False

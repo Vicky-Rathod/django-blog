@@ -13,13 +13,13 @@ urlpatterns = [
     path('sl/', include('social_links.urls', namespace='social_link')),
     path('l/', include('likes.urls', namespace='like')),
     path('c/', include('comments.urls', namespace='comment')),
-    path('f/', include('favorite_post.urls', namespace='favorite')),
+    path('favorite/', include('favorite_post.urls', namespace='favorite')),
+    path('contact/', include('contacts.urls', namespace='contact')),
 
     # third party url
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += path('__debug__/', include(debug_toolbar.urls)),
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

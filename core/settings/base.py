@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'social_links.apps.SocialLinksConfig',
     'likes.apps.LikesConfig',
     'comments.apps.CommentsConfig',
+    'contacts.apps.ContactsConfig',
 
     # third party app installed
     'crispy_forms',

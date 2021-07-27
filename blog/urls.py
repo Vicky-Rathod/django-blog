@@ -23,8 +23,8 @@ urlpatterns = [
     path('delete/<slug>/', SingePostDeleteView.as_view(), name='single_post_delete_view'),
     path('add-post/', CreatePostView.as_view(), name='add_post_view'),
     path('update/<slug>/', PostUpdateView.as_view(), name='post_update_view'),
-    path('like/<str:pk>/', PostLikeView.as_view(), name='post_like'),
-    path('dislike/<str:pk>/', PostDisLikeView.as_view(), name='post_dislike'),
+    path('like/<slug>/', PostLikeView.as_view(), name='post_like'),
+    path('dislike/<slug>/', PostDisLikeView.as_view(), name='post_dislike'),
     path('ht/<slug>/', SingleHashTagPostList.as_view(), name='hashtag_list_posts'),
     
     # sitemap path

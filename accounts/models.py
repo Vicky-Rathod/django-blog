@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.urls import reverse
 from .managers import AccountManager
 # Custom user created.
 class Account(AbstractBaseUser):
@@ -29,3 +30,6 @@ class Account(AbstractBaseUser):
     
     def __str__(self):
         return self.username
+    
+    def get_absolute_url(self):
+        return reverse("profile:profile_view", kwargs={"pk": self.pk})
