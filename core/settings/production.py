@@ -39,7 +39,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-#090909bd**
+
+
 cloudinary.config( 
   cloud_name = config('cloud_name'),
   api_key = config('api_key'),

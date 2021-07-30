@@ -25,7 +25,7 @@ class Profile(models.Model):
     full_name = models.CharField(_("Full name"), max_length=250)
     short_description = models.CharField(_("Short Description"), default='Wiring for your shirt description', max_length=100)
     description =  models.TextField(_("description"), default='Your your details....')
-    image = models.ImageField(_("Image"), upload_to=ProfileAvatarUploadPathGenerate, default='profile/avatar.png')
+    image = models.ImageField(_("Image"), upload_to=ProfileAvatarUploadPathGenerate)
     date_of_birth = models.DateField(_("Date of birth"), blank=True, null=True)
     gender = models.CharField(_("Gander"), choices=CHOICES_GENDER, max_length=20)
 
@@ -43,6 +43,13 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse("profile:profile_view", kwargs={"pk": self.pk})
+    
+    @property
+    def imageURL(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "static/images/avatar.png"
     
     
 
