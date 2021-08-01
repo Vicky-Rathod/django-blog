@@ -5,7 +5,8 @@ from .views import (
     UserRegisterView,
     UserAccountActivateView,
     password_reset_request_view,
-    UserAccountActivateView
+    UserAccountActivateView,
+    UserNameChangeCreateView
 )
 
 app_name = 'Account'
@@ -15,4 +16,5 @@ urlpatterns = [
     path('register/', UserRegisterView.as_view(), name='user_register_view'),
     path('password-reset/', password_reset_request_view, name='password_reset_view'),
     path('activate/<uid>/<token>', UserAccountActivateView.as_view(), name='activate_view'),
+    path('username-change/<str:pk>/', UserNameChangeCreateView.as_view(), name='username_change_view')
 ]

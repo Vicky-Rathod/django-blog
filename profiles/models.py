@@ -10,10 +10,11 @@ import os
 def ProfileAvatarUploadPathGenerate(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     profile_avatar_name = 'user_{0}/avatar.jpg'.format(instance.user.id)
-    full_path = os.path.join(settings.MEDIA_ROOT, profile_avatar_name)
+    full_path = os.path.join(settings.DEFAULT_FILE_STORAGE, profile_avatar_name)
     if os.path.exists(full_path):
     	os.remove(full_path)
     return profile_avatar_name
+
 class Profile(models.Model):
     CHOICES_GENDER = (
         ('Male', 'Male'),
@@ -29,14 +30,14 @@ class Profile(models.Model):
     date_of_birth = models.DateField(_("Date of birth"), blank=True, null=True)
     gender = models.CharField(_("Gander"), choices=CHOICES_GENDER, max_length=20)
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        SIZE = 250, 250
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     SIZE = 250, 250
 
-        if self.image:
-            avatar = Image.open(self.image.path)
-            avatar.thumbnail(SIZE, Image.LANCZOS)
-            avatar.save(self.image.path)
+    #     if self.image:
+    #         avatar = Image.open(self.image.path)
+    #         avatar.thumbnail(SIZE, Image.LANCZOS)
+    #         avatar.save(self.image.path)
 
     def __str__(self):
         return self.user.username
@@ -49,7 +50,7 @@ class Profile(models.Model):
         if self.image:
             return self.image.url
         else:
-            return "static/images/avatar.png"
+            return "https://res.cloudinary.com/mohammadanarul/image/upload/v1627591816/avatar_to8zm9.png"
     
     
 

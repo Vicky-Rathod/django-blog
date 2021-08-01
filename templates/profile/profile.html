@@ -40,8 +40,11 @@
             <h5 class="mb-3">Social Link</h5>
             <ul class="d-flex flex-column">
               {% for social_link in object.user.sociallink_set.all %}
-              <li><i style="color: #198754; font-size: 1.50rem;" class="fab fa-{{ social_link.social_name }} "></i><a
-                  href="{{ social_link.social_link }}" class="ms-3">{{ social_link.social_link|truncatechars:35 }}</a>
+              <li>
+                  <i style="color: #198754; font-size: 1.50rem;" class="fab {{ social_link.social_name }} "></i>
+                <a href="{{ social_link.social_link }}" class="ms-3">
+                  {{ social_link.social_link|truncatechars:35 }}
+                </a>
               </li>
               {% endfor %}
             </ul>
@@ -81,7 +84,7 @@
               <a href="#" class="btn btn-success">Post</a>
             </li>
             <li>
-              <a href="{% url 'profile:profile_settings_update' pk=object.id %}" class="btn btn-success">Settings</a>
+              <a href="{% url 'profile:profile_setting_view' pk=object.id %}" class="btn btn-success">Settings</a>
             </li>
           </ul>
         </div>

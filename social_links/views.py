@@ -29,9 +29,8 @@ class SocialLinkCreateView(SingleObjectMixin, FormView):
     def form_valid(self, form):
         form.save()
 
-        messages.add_message(
+        messages.info(
             self.request,
-            messages.SUCCESS,
             'Changes were saved.'
         )
 

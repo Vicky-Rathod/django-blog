@@ -15,16 +15,13 @@
                     <h3 class="title text-center mb-3">Contact Form</h3>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            {{ form.email }}
-                        </div>
                          <div class="mb-3">
-                             {{ form.subject }}
+                             <input type="text" class="form-control" name="subject" placeholder="Subject">
                          </div>
                          <div class="mb-3">
-                             {{ form.message }}
+                             <textarea name="message" class="form-control mt-3" placeholder="Messages" cols="30" rows="10"></textarea>
                          </div>
-                         <button type="submit" class="btn btn-success">send</button>
+                         <button type="submit" class="btn btn-success mt-3 d-block text-center">send</button>
                      </form>
                 </div>
             </div>

@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
     <!-- Bootstrap CSS version 5 -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">Navbar</a>
+            <a class="navbar-brand" href="/">Mohammadanarul</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{% url 'blog:add_post_view' %}">Post</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'blog:sitemap' %}" class="nav-link">Sitemap</a>
+                        <a href="{% url 'favorite:favorite_list_view' %}" class="nav-link">Favorite Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact:contact_view' %}">Contact</a>
@@ -46,8 +46,7 @@
                     </li>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{% url 'profile:profile_view' user.pk %}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="{% url 'favorite:favorite_list_view' %}">favorite</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile:profile_setting_view' user.pk %}">Settings</a></li>
                         <li><a class="dropdown-item" href="{% url 'account:logout_view' %}">Logout</a></li>
                     </ul>
                 </div>
@@ -64,6 +63,7 @@
             </div>
         </div>
     </nav>
+    {% include 'messages.html' %}
     <div class="main">
         
         {% block content %}

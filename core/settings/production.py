@@ -1,7 +1,4 @@
 from .base import *
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import dj_database_url
 
 SECRET_KEY = config('SECRET_KEY')
@@ -9,8 +6,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['https://mohammadanarul.herokuapp.com/', '*']
-
-INSTALLED_APPS += ['cloudinary']
 
 # database management
 DATABASES = {'default': dj_database_url.config()}
@@ -47,13 +42,8 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'mdanarul7075@gmail.com'
 
-cloudinary.config( 
-  cloud_name = 'mohammadanarul',
-  api_key = '867477367854119',
-  api_secret = 'Q4Wx4-s3DS9Zxf57tHk3uDX3WfY',
-)
-# cloudinary.config( 
-#   cloud_name = config('cloud_name'),
-#   api_key = config('api_key'),
-#   api_secret = config('api_secret'),
-# )
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mohammadanarul',
+    'API_KEY': '867477367854119',
+    'API_SECRET': 'Q4Wx4-s3DS9Zxf57tHk3uDX3WfY'
+}

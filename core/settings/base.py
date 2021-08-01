@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'taggit',
     'django.contrib.sitemaps',
     'mptt',
+    # cloudinary image cloud services  for heroku
+    'cloudinary_storage',
 ]
 
 
@@ -114,7 +116,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Crispy form template inherit
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

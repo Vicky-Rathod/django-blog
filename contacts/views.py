@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.views.generic import FormView
+from django.contrib import messages
 from .forms import ContactForm
 class ContactFormView(FormView):
     form_class = ContactForm
@@ -20,8 +21,10 @@ class ContactFormView(FormView):
                 ['freelanceranarul@gmail.com'],
                 fail_silently=True
             )
+            messages.success(self.request, 'successfully send your mail.')
         except BadHeaderError:
-            return HttpResponse('Invalid header found.')
+            error_message = messages.success(self.request, 'Invalid header found.')
+            return error_message
         return super(ContactFormView, self).form_valid(form)
 
 

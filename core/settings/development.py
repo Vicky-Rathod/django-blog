@@ -54,3 +54,9 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'SHOW_TOOLBAR_CALLBACK': show_toolbar
 }
+# image cloud services
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mohammadanarul',
+    'API_KEY': '867477367854119',
+    'API_SECRET': 'Q4Wx4-s3DS9Zxf57tHk3uDX3WfY'
+}

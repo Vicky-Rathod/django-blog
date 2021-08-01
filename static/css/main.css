@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: transparent;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+/* Start default css handling */
+.tags .table {
+    border: transparent !important;
+}
+
+/* End default css handling */
+.main {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.btn-login {
+    color: #198754 !important;
+    border-color: #198754;
+    width: 5rem;
+}
+
+.btn-login:hover {
+    color: #198754 !important;
+    background-color: #198754 transparent;
+    border-color: #198754
+}
+
+.btn-singup {
+    color: #fff !important;
+    background-color: #198754;
+    border-color: #198754;
+    width: 7rem;
+}
+
+.btn-singup:hover {
+    color: #fff !important;
+    background-color: #198754;
+    border-color: #198754
+}
+
+.btn-more {
+    color: #198754;
+    text-decoration: none;
+    /* background-color: #198754;
+    border-color: #198754;
+    width: 7rem; */
+}
+
+.more-icon {
+    font-size: 1rem;
+    padding-left: .8rem;
+}
+
+.btn-more:hover {
+    color: #198754;
+}
+
+/* .btn-more:hover{
+    color: #fff !important;
+    background-color: #198754;
+    border-color: #198754
+} */
+.bd-callout-info {
+    border-left-color: #5bc0de;
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #198754;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.bd-comment {
+    border-left-color: #5bc0de;
+}
+
+.bd-comment-info {
+    padding: .5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #198754;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.bd-comment-info p {
+    margin-bottom: 0;
+}
+
+.bd-login-info {
+    border-top-color: #5bc0de;
+}
+
+.bd-login {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #198754;
+    border-top-width: .30rem;
+    border-radius: .25rem;
+}
+
+.post-more {
+    margin-top: -.50rem;
+}
+
+.post-more-icon {
+    color: #198754;
+    font-size: 1rem;
+}
+
+.fa-bookmark {
+    font-size: 1.5rem;
+    color: #198754;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+}
+
+.login .bd-login-info {
+    width: 35rem;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #198754;
+    color: #FFFFFF;
+}
+
+.footer span {
+    padding-top: .5rem;
+}
+
+.post-author {
+    color: #198754;
+}
+
+/* Start Profile images */
+/* .p-image-area {
+    position: relative;
+    height: 100%;
+}
+
+.p-image-area .profile-image {
+    height: 10rem;
+    width: 10rem;
+}
+
+.p-image-area .edit-btn {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding-left: 2rem;
+}
+
+.edit-btn .fa-camera {
+    padding: .50rem .50rem;
+    background-color: #198754;
+    border-radius: 1rem;
+} */
+
+.comment-like-dislike span {
+    font-size: 1rem;
+    padding: 0rem .25rem;
+}
+
+.comment-like-dislike .fa-comment-alt {
+    color: #198754;
+}
+
+.comment-like-dislike .fa-heart {
+    color: #198754;
+}
+
+.comment-like-dislike .fa-thumbs-down {
+    color: red;
+}
+
+/* .p-image-area .edit-btn:hover{
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: #198754;
+    font-size: 2rem;
+    cursor: pointer;
+    visibility: visible;
+} */
+
+.bg-dadge {
+    color: #fff;
+    background-color: #198754;
+    border: 1px solid #198754;
+    padding: .25rem .25rem;
+    border-radius: .25rem;
+    margin: 0rem .25rem .25rem 0rem;
+}
+
+.profile-navbar li {
+    padding: 0rem .50rem;
+}
+
+.description-icon {
+    color: #198754;
+    font-size: 1.50rem;
+    float: right;
+    padding-top: 1rem;
+}
+
+/* End Profile images */
+
+.tag-badge {
+    color: #FFFFFF;
+    background-color: #198754;
+    padding: .30rem;
+    border-radius: .50rem;
+}
+
+.tag-badge:hover {
+    color: #FFFFFF;
+}
+
+/* file input */
+.input-file {
+    position: relative;
+    color: #7f7f7f;
+}
+input#image-input {
+    display: none;
+}
+.current-image{
+    height: 10rem;
+    width: 10rem;
+}
+/* end file input */

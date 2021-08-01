@@ -41,9 +41,14 @@ class ProfileShortDescriptionUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('profile:profile_view', kwargs={'pk': self.object.pk})
+class ProfileSettingView(LoginRequiredMixin, View):
+    template_name = "profile/profile-setting.html"
+    def get(self, request, pk, *args, **kwargs):
+        profile = Profile.objects.get(pk=pk)
+        return render(request, self.template_name, {'profile': profile})
 
-class ProfileSettingsUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'profile/update-profile-setting.html'
+class ProfileInfoUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile/update-profile-info.html'
     model = Profile
     fields = ('full_name', 'date_of_birth', 'gender')
 
