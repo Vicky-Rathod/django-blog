@@ -16,7 +16,7 @@
             <div class="card card-body mt-5">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <img src="{{ object.user.profile.image.url }}" alt="mdo" width="32" height="32"
+                        <img src="{{ object.user.profile.imageURL }}" alt="mdo" width="32" height="32"
                             class="rounded-circle me-2"> |
                         <span class="ms-2 me-2"
                             id="conveying-meaning-to-assistive-technologies">{{ object.user }}</span> |
@@ -76,7 +76,7 @@
                         {% recursetree object.comments.all %}
                         <div id="{{ node.id }}" class="bd-comment bd-comment-info">
                             <div class="d-flex align-items-center">
-                                <img src="{{ node.user.profile.image.url }}" alt="mdo" width="32" height="32"
+                                <img src="{{ node.user.profile.imageURL }}" alt="mdo" width="32" height="32"
                                     class="rounded-circle me-2"> |
                                 <span class="ms-2"
                                     id="conveying-meaning-to-assistive-technologies">{{ node.user.username }}</span>
@@ -108,7 +108,7 @@
                 {% if user.is_authenticated %}
                 <div class="card">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <img src="{{ user.profile.image.url }}" alt="mdo" width="80" height="80"
+                        <img src="{{ user.profile.imageURL }}" alt="mdo" width="80" height="80"
                             class="rounded-circle me-2">
                         <h4>{{ user.username }}</h4>
                         <p class="text-center">

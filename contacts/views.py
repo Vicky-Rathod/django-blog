@@ -4,6 +4,7 @@ from django.core.mail import BadHeaderError, send_mail
 from django.views.generic import FormView
 from django.contrib import messages
 from .forms import ContactForm
+
 class ContactFormView(FormView):
     form_class = ContactForm
     template_name = "contact/contact.html"

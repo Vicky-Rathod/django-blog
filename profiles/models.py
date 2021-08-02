@@ -10,7 +10,7 @@ import os
 def ProfileAvatarUploadPathGenerate(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     profile_avatar_name = 'user_{0}/avatar.jpg'.format(instance.user.id)
-    full_path = os.path.join(settings.DEFAULT_FILE_STORAGE, profile_avatar_name)
+    full_path = os.path.join(settings.MEDIA_ROOT, profile_avatar_name)
     if os.path.exists(full_path):
     	os.remove(full_path)
     return profile_avatar_name
