@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'mptt',
     # cloudinary image cloud services  for heroku
-    'cloudinary_storage',
+    'cloudinary',
 ]
 
 
